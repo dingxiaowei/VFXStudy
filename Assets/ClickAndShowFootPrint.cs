@@ -60,7 +60,9 @@ public class ClickAndShowFootPrint : MonoBehaviour
             effectData = RegisterImpactType(asset);
         }
         effectData.Effect.SetVector3(startPositionId, position);
-        effectData.Effect.SetVector3(normalId, normal);
+        Quaternion Rotation = Quaternion.FromToRotation(Vector3.forward, normal);
+        Vector3 rot = Rotation.eulerAngles;
+        effectData.Effect.SetVector3("Direction", rot);
         effectData.Effect.Play(effectData.EventAttribute);
         effectData.Effect.pause = false;
     }
