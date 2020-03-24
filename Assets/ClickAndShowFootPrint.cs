@@ -33,7 +33,7 @@ public class ClickAndShowFootPrint : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);  //摄像机需要设置MainCamera的Tag这里才能找到
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hitInfo;
             if (Physics.Raycast(ray, out hitInfo, ValidTouchDistance, LayerMask.GetMask("Ground")))
             {
@@ -60,7 +60,7 @@ public class ClickAndShowFootPrint : MonoBehaviour
             effectData = RegisterImpactType(asset);
         }
         effectData.Effect.SetVector3(startPositionId, position);
-        Quaternion Rotation = Quaternion.FromToRotation(Vector3.forward, normal);
+        Quaternion Rotation = Quaternion.FromToRotation(Vector3.back, normal);
         Vector3 rot = Rotation.eulerAngles;
         effectData.Effect.SetVector3("Direction", rot);
         effectData.Effect.Play(effectData.EventAttribute);
